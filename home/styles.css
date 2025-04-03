@@ -26,6 +26,7 @@ nav a {
     text-decoration: none;
     color: #2e4939;
     font-weight: 500;
+    display: inline-block;
 }
 
 .signup-btn {
@@ -111,8 +112,9 @@ nav a {
 
 
 .cta {
-    text-align: center;
-    padding: 50px;
+    padding-inline: 50px;
+    display: flex; /* Add flexbox */
+    justify-content: flex-start; /* Align items to the left initially */
 }
 
 .get-started-btn {
@@ -120,10 +122,15 @@ nav a {
     color: white;
     border: none;
     padding: 12px 25px;
+    width: 20%;
+    min-width: fit-content;
     font-size: 16px;
     border-radius: 5px;
+    font-weight: bold;
     cursor: pointer;
+    margin-right: auto;
 }
+
 
 .get-started-btn:hover {
     background: #3a5c48;
@@ -134,4 +141,13 @@ nav a {
 
 .hover:hover {
     transform: scale(1.1);
+}
+
+.footer {
+    background: #eaf4e1; /* Match the header background */
+    color: #2e4939; /* Match the text color */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    border-top: 1px solid #d9ead3; /* Subtle border for separation */
 }
