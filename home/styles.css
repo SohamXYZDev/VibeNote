@@ -3,9 +3,10 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f0f5ee;
     color: #2e4939;
     min-width: 450px; 
+    background: url('../assets/bg.png') no-repeat center center fixed;
+    background-size: cover;
 }
 
 
@@ -14,7 +15,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: #eaf4e1;
+    background: transparent;
 }
 
 .logo {
@@ -145,6 +146,11 @@ nav a {
     font-weight: bold;
     cursor: pointer;
     margin-right: auto;
+}
+#feel {
+    background-color: #2e4939;
+    padding-inline: 5px;
+    color: white;
 }
 
 

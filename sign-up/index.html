@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> VibeNote - Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="hover logo">VibeNote</div>
+        <nav>
+            <a class="hover" href="#">Features</a>
+            <a class="hover" href="#">About</a>
+            <button class="signup-btn hover">Sign-up</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="signup-box">
+          <h1>Create Account</h1>
+          <form id="signup-form">
+            <div class="input-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" placeholder="Enter your username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Enter your password">
+                    <button type="button" id="toggle-password" class="eye-icon">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="hover signup-button">Sign Up</button>
+          </form>
+        </div>
+      </div>    
+      
+    <footer class="footer">
+        <p>&copy; 2025 VibeNote. All rights reserved.</p>
+    </footer>
+</body>
+<script src="script.js"></script>
+</html>
