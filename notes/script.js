@@ -111,11 +111,10 @@ function saveNote(noteId, title, content, emotion_tags) {
 }
 
 function addNoteContent(newNote, title, content, tags) {
-    
     let emotion_tags = document.createElement("div");
     emotion_tags.classList.add("emotion_tags");
-    if  (!tags) {
-        console.log("function called without tags, creating tags")
+    if (!tags) {
+        console.log("function called without tags, creating tags");
         let energyTag = document.createElement("span");
         energyTag.classList.add("emotion-span");
         energyTag.textContent = energyScale[Math.floor(Math.random() * energyScale.length)];
@@ -132,10 +131,9 @@ function addNoteContent(newNote, title, content, tags) {
         purposeTag.classList.add("emotion-span");
         purposeTag.textContent = senseOfPurposeScale[Math.floor(Math.random() * senseOfPurposeScale.length)];
         emotion_tags.appendChild(purposeTag);
-        
     } else {
-        console.log("function called WIth TAGS.")
-        console.log(tags)
+        console.log("function called with tags.");
+        console.log(tags);
         emotion_tags.innerHTML = tags;
     }
 
@@ -147,16 +145,70 @@ function addNoteContent(newNote, title, content, tags) {
         "margin-left: 2px; margin-top: 5px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-height: 50px;";
     content_field.textContent = content;
 
+    // Create delete button with trash icon
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-btn");
+    deleteButton.style =
+        "margin-top: 10px; background-color: white; color: #c0392b; cursor: pointer; border: none;";
+
+    // Add trash icon (Font Awesome or SVG)
+    deleteButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+    `;
+
+    deleteButton.onclick = function (event) {
+        localStorage.setItem("noteNo", parseInt(localStorage.getItem("noteNo")) - 1); // Decrement note number
+        event.stopPropagation(); // Prevent triggering the note click event
+        // Remove note from localStorage
+        localStorage.removeItem(newNote.id);
+        
+        // Remove note from the DOM
+        newNote.remove();
+        reorderNotes();
+    };
+
     saveNote(newNote.id, title, content, emotion_tags.innerHTML); // Save note to localStorage
 
     newNote.appendChild(emotion_tags);
     newNote.appendChild(title_field);
     newNote.appendChild(content_field);
+    newNote.appendChild(deleteButton); // Add delete button to the note
 
     // Make note clickable to open full view
     newNote.onclick = function () {
-        openFullNote(newNote.id,emotion_tags, title, content);
+        openFullNote(newNote.id, emotion_tags, title, content);
     };
+}
+
+function reorderNotes() {
+    const noteContainer = document.getElementById("notesContainer");
+    const notes = noteContainer.querySelectorAll(".note-card"); // Get all note cards
+    let newNoteNo = 0;
+
+    // Clear all notes from localStorage
+    for (let i = 1; i <= parseInt(localStorage.getItem("noteNo")); i++) {
+        localStorage.removeItem("note" + i);
+    }
+
+    // Reassign IDs and update localStorage
+    notes.forEach((note, index) => {
+        newNoteNo = index + 1; // Start numbering from 1
+        const newNoteId = "note" + newNoteNo;
+
+        // Update the note's ID
+        note.id = newNoteId;
+
+        // Get the note's title, content, and emotion tags
+        const title = note.querySelector("h3").innerText;
+        const content = note.querySelector("p").innerText;
+        const emotion_tags = note.querySelector(".emotion_tags").innerHTML;
+
+        // Save the updated note to localStorage
+        localStorage.setItem(newNoteId, JSON.stringify({ title, content, emotion_tags }));
+    });
+
+    // Update the noteNo in localStorage
+    localStorage.setItem("noteNo", newNoteNo);
 }
 
 // Load Notes from Local Storage on Page Load

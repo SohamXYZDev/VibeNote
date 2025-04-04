@@ -282,3 +282,21 @@ body {
 .overlay.active {
     display: block; /* Show overlay when active */
 }
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+.delete-btn svg {
+    fill: #c0392b; /* Set the color of the SVG */
+    width: 16px; /* Adjust size */
+    height: 16px;
+}
+.delete-btn:hover svg {
+    fill: #c0392b; /* Darker red on hover */
+    transform: scale(1.2); /* Slight zoom effect */
+    transition: transform 0.2s ease-in-out;
+}
