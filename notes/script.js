@@ -118,17 +118,31 @@ function saveNote(noteId, title, content, emotion_tags) {
 function addNoteContent(newNote, title, content, tags) {
     let emotion_tags = document.createElement("div");
     emotion_tags.classList.add("emotion_tags");
+
+    // Add a spinner inside the note while generating tags
+    let spinner = document.createElement("div");
+    spinner.classList.add("spinner");
+    spinner.style = "margin: 10px auto;"; // Center the spinner
+    emotion_tags.appendChild(spinner);
+
     if (!tags) {
         console.log("function called without tags, generating tags USING AI");
         generateTags(title, content).then((generatedTags) => {
             console.log("Generated Tags:", generatedTags);
+
+            // Remove the spinner once tags are generated
+            spinner.remove();
+
+            // Add the generated tags to the note
             generatedTags.forEach((tag) => {
                 let tagElement = document.createElement("span");
                 tagElement.classList.add("emotion-span");
                 tagElement.textContent = tag;
                 emotion_tags.appendChild(tagElement);
             });
-            saveNote(newNote.id, title, content, emotion_tags.innerHTML); // Save note to localStorage
+
+            // Save the note with the generated tags
+            saveNote(newNote.id, title, content, emotion_tags.innerHTML);
         });
     } else {
         console.log("function called with tags.");
@@ -160,7 +174,7 @@ function addNoteContent(newNote, title, content, tags) {
         event.stopPropagation(); // Prevent triggering the note click event
         // Remove note from localStorage
         localStorage.removeItem(newNote.id);
-        
+
         // Remove note from the DOM
         newNote.remove();
         reorderNotes();
