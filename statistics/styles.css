@@ -1,0 +1,73 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #2e4939;
+    min-width: 450px;
+    background-image: url('../assets/bg.png'); /* Replace with the path to your PNG */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */ 
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: transparent;
+    background: transparent;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #2e4939;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.signup-btn {
+    margin-left: 10px;
+    background: #4b7057;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    max-width: 90px;
+}
+
+.signup-btn:hover {
+    background: #3a5c48;
+}
+.hover {
+    transition: transform 0.2s ease-in-out;
+}
+
+.hover:hover {
+    transform: scale(1.1);
+}
+
+.footer {
+    background: #eaf4e1; /* Match the header background */
+    color: #2e4939; /* Match the text color */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    border-top: 1px solid #d9ead3; /* Subtle border for separation */
+}
