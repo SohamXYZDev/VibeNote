@@ -18,6 +18,7 @@ header {
     align-items: center;
     padding: 20px 40px;
     background: transparent;
+    background: transparent;
 }
 
 .logo {
@@ -148,6 +149,11 @@ nav a {
     font-weight: bold;
     cursor: pointer;
     margin-right: auto;
+}
+#feel {
+    background-color: #2e4939;
+    padding-inline: 5px;
+    color: white;
 }
 
 
