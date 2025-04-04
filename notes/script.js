@@ -2,15 +2,15 @@ const energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent"
 const moodScale = ["Joyful", "Content", "Chill", "Neutral", "Indifferent", "Disappointed", "Sad", "Hopeless", "Suicidal"];
 const clarityScale = ["Sharp", "Focused", "Clear-headed", "Balanced", "Distracted", "Foggy", "Confused", "Overwhelmed", "Mentally Numb"];
 const senseOfPurposeScale = [
-    "Driven",         // clear goals, full force ahead
-    "Focused",        // dialed into purpose
-    "Aligned",        // values and actions match
-    "Curious",        // open to direction, motivated
-    "Uncertain",      // unsure of next step, but okay
-    "Lost",           // disconnected from direction
-    "Conflicted",     // torn between paths
-    "Empty",          // emotionally numb to meaning
-    "Detached"        // feels like nothing matters
+    "Driven",         
+    "Focused",        
+    "Aligned",        
+    "Curious",        
+    "Uncertain",      
+    "Lost",          
+    "Conflicted",     
+    "Empty",          
+    "Detached"        
 ];
 
 const date = new Date();
@@ -114,6 +114,7 @@ function addNoteContent(newNote, title, content, tags) {
     let emotion_tags = document.createElement("div");
     emotion_tags.classList.add("emotion_tags");
     if (!tags) {
+        /*
         console.log("function called without tags, creating tags");
         let energyTag = document.createElement("span");
         energyTag.classList.add("emotion-span");
@@ -131,6 +132,17 @@ function addNoteContent(newNote, title, content, tags) {
         purposeTag.classList.add("emotion-span");
         purposeTag.textContent = senseOfPurposeScale[Math.floor(Math.random() * senseOfPurposeScale.length)];
         emotion_tags.appendChild(purposeTag);
+        */
+        console.log("function called without tags, generating tags USING AI");
+        generateTags(title, content).then((generatedTags) => {
+            console.log("Generated Tags:", generatedTags);
+            generatedTags.forEach((tag) => {
+                let tagElement = document.createElement("span");
+                tagElement.classList.add("emotion-span");
+                tagElement.textContent = tag;
+                emotion_tags.appendChild(tagElement);
+            });
+        });
     } else {
         console.log("function called with tags.");
         console.log(tags);
@@ -236,3 +248,21 @@ document.addEventListener("DOMContentLoaded", loadNotes);
 document.querySelector(".signup-btn").addEventListener("click", () => {
     window.location.href = "../sign-up/";
 });
+
+async function generateTags(title, content) {
+    try {
+        const response = await fetch("http://localhost:3000/generate-tags", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ title, content }),
+        });
+
+        const data = await response.json();
+        console.log(data.tags); // Log the generated tags
+        return data.tags; // Return the generated tags
+    } catch (error) {
+        console.error("Error generating tags:", error);
+    }
+}
