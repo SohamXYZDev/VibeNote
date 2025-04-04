@@ -55,3 +55,6 @@ function addNote() {
     noteContainer.appendChild(newNote);
     closeModal();
 }
+document.querySelector(".signup-btn").addEventListener("click", () => {
+    window.location.href = "../sign-up/";
+});
