@@ -106,7 +106,12 @@ function addNote() {
 }
 
 function saveNote(noteId, title, content, emotion_tags) {
-    const noteData = { title, content, emotion_tags };
+    const noteData = {
+        title,
+        content,
+        emotion_tags,
+        date: new Date().toISOString(), // Add the current date in ISO format
+    };
     localStorage.setItem(noteId, JSON.stringify(noteData)); // Save note to localStorage
 }
 
@@ -114,25 +119,6 @@ function addNoteContent(newNote, title, content, tags) {
     let emotion_tags = document.createElement("div");
     emotion_tags.classList.add("emotion_tags");
     if (!tags) {
-        /*
-        console.log("function called without tags, creating tags");
-        let energyTag = document.createElement("span");
-        energyTag.classList.add("emotion-span");
-        energyTag.textContent = energyScale[Math.floor(Math.random() * energyScale.length)];
-        emotion_tags.appendChild(energyTag);
-        let moodTag = document.createElement("span");
-        moodTag.classList.add("emotion-span");
-        moodTag.textContent = moodScale[Math.floor(Math.random() * moodScale.length)];
-        emotion_tags.appendChild(moodTag);
-        let clarityTag = document.createElement("span");
-        clarityTag.classList.add("emotion-span");
-        clarityTag.textContent = clarityScale[Math.floor(Math.random() * clarityScale.length)];
-        emotion_tags.appendChild(clarityTag);
-        let purposeTag = document.createElement("span");
-        purposeTag.classList.add("emotion-span");
-        purposeTag.textContent = senseOfPurposeScale[Math.floor(Math.random() * senseOfPurposeScale.length)];
-        emotion_tags.appendChild(purposeTag);
-        */
         console.log("function called without tags, generating tags USING AI");
         generateTags(title, content).then((generatedTags) => {
             console.log("Generated Tags:", generatedTags);
@@ -142,6 +128,7 @@ function addNoteContent(newNote, title, content, tags) {
                 tagElement.textContent = tag;
                 emotion_tags.appendChild(tagElement);
             });
+            saveNote(newNote.id, title, content, emotion_tags.innerHTML); // Save note to localStorage
         });
     } else {
         console.log("function called with tags.");
@@ -178,8 +165,6 @@ function addNoteContent(newNote, title, content, tags) {
         newNote.remove();
         reorderNotes();
     };
-
-    saveNote(newNote.id, title, content, emotion_tags.innerHTML); // Save note to localStorage
 
     newNote.appendChild(emotion_tags);
     newNote.appendChild(title_field);

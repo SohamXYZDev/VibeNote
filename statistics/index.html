@@ -18,11 +18,30 @@
         </nav>
     </header>
     <!--  Stats  -->
-
+    <!-- Add this inside the body, where the "Stats" section will go -->
+    <main>
+        <section id="statsSection">
+            <h2>Your Vibe Chart</h2>
+            <canvas id="vibesChart" width="400" height="200"></canvas>
+        </section>
+        <section id="weeklyStatsSection">
+            <h2>Your Weekly Vibes</h2>
+            <canvas id="weeklyChart" width="400" height="200"></canvas>
+        </section>
+        <section id="monthlyStatsSection">
+            <h2>Your Monthly Vibes</h2>
+            <canvas id="monthlyChart" width="400" height="200"></canvas>
+        </section>
+        <section id="yearlyStatsSection">
+            <h2>Your Yearly Vibes</h2>
+            <canvas id="yearlyChart" width="400" height="200"></canvas>
+        </section>
+    </main>
 
     <footer class="footer">
         <p>&copy; 2025 VibeNote. All rights reserved.</p>
     </footer>
 </body>
 <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </html>
