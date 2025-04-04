@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VibeNote - Notes</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    <!-- Header -->
-    <header>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <!-- Header -->
+      <header>
         <div class="hover logo">VibeNote</div>
         <nav>
-            <a class="hover" href="../about/">About</a>
-            <a class="hover" href="../notes/">Notes</a>
-            <button class="signup-btn hover">Sign-up</button>
+          <a class="hover" href="../about/">About</a>
+          <a class="hover" href="../notes/">Notes</a>
+          <button class="signup-btn hover">Sign-up</button>
         </nav>
-    </header>
+      </header>
 
-    <!-- Notes Container -->
-    <div class="notes-container" id="notesContainer">
+      <!-- Notes Container -->
+      <div class="notes-container" id="notesContainer">
         <!-- Notes will appear here dynamically -->
-    </div>
+      </div>
 
-    <!-- Add Note Button -->
-    <button class="add-note-btn hover" onclick="openModal()">+ Add Note</button>
+      <!-- Add Note Button -->
+      <button class="add-note-btn hover" onclick="openModal()">
+        + Add Note
+      </button>
 
-    <!-- Add Note Modal -->
-    <div class="modal" id="noteModal">
+      <!-- Add Note Modal -->
+      <div class="modal" id="noteModal">
         <h2>New Note</h2>
-        <input type="text" id="noteTitle" placeholder="Title">
-        <textarea id="noteContent" placeholder="Write your note..." rows="4"></textarea>
+        <input type="text" id="noteTitle" placeholder="Title" />
+        <textarea
+          id="noteContent"
+          placeholder="Write your note..."
+          rows="4"
+        ></textarea>
         <div class="modal-buttons">
-            <button class="save-btn hover" onclick="addNote()">Save</button>
-            <button class="cancel-btn hover" onclick="closeModal()">Cancel</button>
+          <button class="save-btn hover" onclick="addNote()">Save</button>
+          <button class="cancel-btn hover" onclick="closeModal()">
+            Cancel
+          </button>
         </div>
+      </div>
     </div>
-
+    <div class="overlay" id="overlay"></div>
     <!-- Full Note Modal -->
     <div class="full-note-modal" id="fullNoteModal">
-        <h2 id="fullNoteTitle"></h2>
-        <p id="fullNoteContent"></p>
-        <button class="close-btn" onclick="closeFullNote()">Close</button>
+      <div id="fullNoteEmotionTags"></div>
+      <h2 id="fullNoteTitle" contenteditable="true"></h2>
+      <!-- Make title editable -->
+      <p id="fullNoteContent" contenteditable="true"></p>
+      <!-- Make content editable -->
+      <button class="close-btn" onclick="closeFullNote()">Close</button>
     </div>
 
-    
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
