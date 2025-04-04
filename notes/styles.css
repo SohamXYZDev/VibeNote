@@ -248,3 +248,16 @@ body {
 .close-btn:hover {
     background: #3a5c48;
 }
+
+.emotion-span {
+    font-weight: bold;
+    display: inline-block;
+    background: #d9ead3;
+    color: #2e4939;
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    border-radius: 12px;
+    font-size: 14px;
+}
