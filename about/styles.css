@@ -5,10 +5,10 @@ body {
     padding: 0;
     color: #2e4939;
     min-width: 450px;
-    background-image: url('../assets/bg.png'); 
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+    background-image: url('../assets/bg.png'); /* Replace with the path to your PNG */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */ 
 }
 
 
@@ -133,8 +133,8 @@ nav a {
 
 .cta {
     padding-inline: 50px;
-    display: flex; 
-    justify-content: flex-start; 
+    display: flex; /* Add flexbox */
+    justify-content: flex-start; /* Align items to the left initially */
 }
 
 .get-started-btn {
@@ -169,11 +169,11 @@ nav a {
 }
 
 .footer {
-    background: #eaf4e1; 
-    color: #2e4939; 
+    background: #eaf4e1; /* Match the header background */
+    color: #2e4939; /* Match the text color */
     text-align: center;
     padding: 15px 0;
     font-size: 14px;
-    border-top: 1px solid #d9ead3; 
+    border-top: 1px solid #d9ead3; /* Subtle border for separation */
 }
 

@@ -1,4 +1,4 @@
-
+/* Global Styles */
 body {
     font-family: 'Arial', sans-serif;
     background: #eef2e6;
@@ -76,6 +76,7 @@ nav a {
     font-weight: bold;
 }
 
+/* Notes Container */
 .notes-container,.pinned-notes-container {
     padding: 2%;
     display: flex;
@@ -85,6 +86,7 @@ nav a {
     padding-inline: 3.5%;
 }
 
+/* Note Card */
 .note-card {
     margin-inline: 10px;
     margin-bottom: 20px;
@@ -132,6 +134,7 @@ nav a {
     background: #3a5c48;
 }
 
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;

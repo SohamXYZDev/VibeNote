@@ -11,9 +11,9 @@
     <div class="content-wrapper">
       <!-- Header -->
       <header>
-        <div class="hover logo" style="cursor: pointer;" onclick="window.location.href = '../'">VibeNote</div>
+        <div class="hover logo" style="cursor: pointer;" onclick="window.location.href = '../about/'">VibeNote</div>
         <nav>
-          <a class="hover" href="../">About</a>
+          <a class="hover" href="../about/">About</a>
           <a class="hover" href="../notes/">Notes</a>
           <a class="hover" href="../statistics/">Statistics</a>
         </nav>
@@ -23,14 +23,18 @@
         
       
       </div>
+      <!-- Notes Container -->
       <h2 class="notes_heading">Notes</h2>
       <div class="notes-container" id="notesContainer">
+        <!-- Notes will appear here dynamically -->
       </div>
 
+      <!-- Add Note Button -->
       <button class="add-note-btn hover" onclick="openModal()">
         + Add Note
       </button>
 
+      <!-- Add Note Modal -->
       
     </div>
     <div class="overlay" id="overlay"></div>
@@ -49,10 +53,13 @@
         </button>
       </div>
     </div>
+    <!-- Full Note Modal -->
     <div class="full-note-modal" id="fullNoteModal">
       <div id="fullNoteEmotionTags"></div>
       <h2 id="fullNoteTitle" contenteditable="true"></h2>
+      <!-- Make title editable -->
       <p id="fullNoteContent" contenteditable="true"></p>
+      <!-- Make content editable -->
       <button class="close-btn" onclick="closeFullNote()">Close</button>
     </div>
     <footer class="footer">
