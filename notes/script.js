@@ -152,10 +152,10 @@ function addNoteContent(newNote, title, content, tags) {
 
     let title_field = document.createElement("h3");
     title_field.textContent = title;
-    title_field.style = "margin-left: 3px; margin-top: 5px; margin-bottom: 5px;";
+    title_field.style = "min-height: 3em; margin-left: 3px; margin-top: 5px; margin-bottom: 5px;";
     let content_field = document.createElement("p");
     content_field.style =
-        "margin-left: 2px; margin-top: 5px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-height: 50px;";
+        "min-height: 6em; margin-left: 2px; margin-top: 5px; margin-bottom: 5px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;";
     content_field.textContent = content;
 
     // Create delete button with trash icon

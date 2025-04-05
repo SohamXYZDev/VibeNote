@@ -78,23 +78,28 @@ nav a {
 
 /* Notes Container */
 .notes-container {
-    padding: 40px;
+    padding: 2.5%;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
 }
 
 /* Note Card */
 .note-card {
+    margin-inline: 10px;
+    margin-bottom: 20px;
     background: #fff;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: calc(((100% - 80px) - 120px) / 4); /* Your original formula */
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    overflow: hidden;
 }
+@media (max-width: 820px) {
+    .note-card {
+        width: calc(((100% - 40px) - 60px) / 2);
+    }
+  }
 .note-card:hover {
     transform: scale(1.1);
 }
@@ -107,10 +112,6 @@ nav a {
 .note-card p {
     font-size: 14px;
     color: #4b6144;
-    max-height: 50px; /* Limit height */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 /* Add Note Button */
