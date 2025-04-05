@@ -205,28 +205,62 @@ function renderChart(chartData, canvasId) {
 // Load and render the chart on page load
 document.addEventListener("DOMContentLoaded", () => {
     console.log("🚀 Page loaded. Fetching entries...");
-    const allEntries = getAllEntries(); // instead of getLast10Entries
-; // This only fetches the last 10, replace with full history if available
+    const allEntries = getAllEntries(); // Fetch all entries from localStorage
 
-    // Render last 10
+    // Check for "Suicidal" entries
+    const hasSuicidalEntries = allEntries.some((entry) => {
+        if (!entry.emotion_tags) return false;
+
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = entry.emotion_tags;
+
+        // Extract text content from each <span>
+        const tags = Array.from(tempDiv.querySelectorAll(".emotion-span")).map((span) =>
+            span.textContent.trim()
+        );
+
+        return tags.includes("Suicidal");
+    });
+
+    // Update the health-label if "Suicidal" entries are found
+    const healthLabel = document.getElementById("health-label");
+    if (hasSuicidalEntries) {
+        healthLabel.innerHTML = `
+            <p style="color: #c0392b; font-weight: bold;">
+                We're here for you. If you're feeling overwhelmed, please reach out to someone you trust or contact a hotline in your area. You are not alone.
+            </p>
+            <p>
+                <strong>Hotlines:</strong><br>
+                - <a href="https://www.opencounseling.com/suicide-hotlines" target="_blank" style="color: #4b7057;">Find a hotline in your country</a><br>
+                - US: <a href="tel:988" style="color: #4b7057;">988 Suicide & Crisis Lifeline</a><br>
+                - UK: <a href="tel:116123" style="color: #4b7057;">Samaritans (116 123)</a><br>
+                - Canada: <a href="tel:1-833-456-4566" style="color: #4b7057;">Talk Suicide Canada (1-833-456-4566)</a>
+            </p>
+        `;
+    } else {
+        healthLabel.innerHTML = `
+            <p style="color: #4b7057; font-weight: bold;">
+                Keep reflecting and growing. Your journey matters, and we're here to support you.
+            </p>
+        `;
+    }
+
+    // Render charts
     const chartData = prepareChartData(allEntries);
     renderChart(chartData, "vibesChart");
 
-    // Render Weekly
     const weeklyEntries = filterNotesByTimePeriod(allEntries, "weekly");
     if (weeklyEntries.length > 0) {
         const weeklyData = prepareChartData(weeklyEntries);
         renderChart(weeklyData, "weeklyChart");
     }
 
-    // Render Monthly
     const monthlyEntries = filterNotesByTimePeriod(allEntries, "monthly");
     if (monthlyEntries.length > 0) {
         const monthlyData = prepareChartData(monthlyEntries);
         renderChart(monthlyData, "monthlyChart");
     }
 
-    // Render Yearly
     const yearlyEntries = filterNotesByTimePeriod(allEntries, "yearly");
     if (yearlyEntries.length > 0) {
         const yearlyData = prepareChartData(yearlyEntries);
