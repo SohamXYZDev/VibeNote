@@ -92,7 +92,6 @@ function addNote() {
         return;
     }
 
-
     let noteContainer = document.getElementById("notesContainer");
     let newNote = document.createElement("div");
 
@@ -102,20 +101,82 @@ function addNote() {
     addNoteContent(newNote, title, content);
     noteContainer.appendChild(newNote);
 
+    // Save the note with pinned = false
+    saveNote(newNote.id, title, content, "", false);
+
     closeModal();
 }
 
-function saveNote(noteId, title, content, emotion_tags) {
+function saveNote(noteId, title, content, emotion_tags, pinned = false) {
     const noteData = {
         title,
         content,
         emotion_tags,
+        pinned, // Add pinned property
         date: new Date().toISOString(), // Add the current date in ISO format
     };
     localStorage.setItem(noteId, JSON.stringify(noteData)); // Save note to localStorage
 }
 
-function addNoteContent(newNote, title, content, tags) {
+function togglePinnedNotesHeading() {
+    const pinnedContainer = document.getElementById("pinnedNotesContainer");
+    const pinnedHeading = document.getElementById("pinned_notes_heading") // Select the first h2 (Pinned Notes)
+
+    if (pinnedContainer.children.length === 0) {
+        pinnedHeading.style.display = "none"; // Hide the heading if no pinned notes
+        pinnedContainer.style.display = "none"
+    } else {
+        pinnedContainer.style.display = "block"; // Show the pinned notes container
+        pinnedHeading.style.display = "block"; // Show the heading if there are pinned notes
+    }
+}
+
+// Function to get predefined colors for tags
+function getTagColor(tag) {
+    const tagColors = {
+        suicidal: "#ff4d4d", // Bright red for "Suicidal"
+        hopeless: "#ff9999", // Light red for "Hopeless"
+        sad: "#ffcccb", // Pinkish red for "Sad"
+        joyful: "#90ee90", // Light green for "Joyful"
+        content: "#98fb98", // Pale green for "Content"
+        chill: "#add8e6", // Light blue for "Chill"
+        neutral: "#d3d3d3", // Light gray for "Neutral"
+        indifferent: "#f0e68c", // Khaki for "Indifferent"
+        disappointed: "#f5deb3", // Wheat for "Disappointed"
+        restless: "#ffb347", // Light orange for "Restless"
+        thrilled: "#ff69b4", // Hot pink for "Thrilled"
+        energetic: "#ffd700", // Gold for "Energetic"
+        motivated: "#ffa500", // Orange for "Motivated"
+        calm: "#87ceeb", // Sky blue for "Calm"
+        anxious: "#ffb6c1", // Light pink for "Anxious"
+        stressed: "#ff6347", // Tomato red for "Stressed"
+        exhausted: "#d2b48c", // Tan for "Exhausted"
+        sharp: "#f0e68c", // Khaki for "Sharp"
+        focused: "#f5deb3", // Wheat for "Focused"
+        "clear-headed": "#fffacd", // Lemon Chiffon for "Clear-headed"
+        balanced: "#f5f5dc", // Beige for "Balanced"
+        distracted: "#dcdcdc", // Gainsboro for "Distracted"
+        foggy: "#d3d3d3", // Light gray for "Foggy"
+        confused: "#f0e68c", // Khaki for "Confused"
+        overwhelmed: "#ffb6c1", // Light pink for "Overwhelmed"
+        mentally: "#d8bfd8", // Thistle for "Mentally Numb"
+        driven: "#98fb98", // Pale green for "Driven"
+        aligned: "#90ee90", // Light green for "Aligned"
+        curious: "#add8e6", // Light blue for "Curious"
+        uncertain: "#d3d3d3", // Light gray for "Uncertain"
+        lost: "#dcdcdc", // Gainsboro for "Lost"
+        conflicted: "#f0e68c", // Khaki for "Conflicted"
+        empty: "#f5deb3", // Wheat for "Empty"
+        detached: "#fffacd", // Lemon Chiffon for "Detached"
+
+        // Add more tags and colors as needed
+    };
+
+    // Return the color for the tag, or a default color if the tag is not in the map
+    return tagColors[tag.toLowerCase()] || "#e2e3e5"; // Default light gray
+}
+
+function addNoteContent(newNote, title, content, tags, pinned = false) {
     let emotion_tags = document.createElement("div");
     emotion_tags.classList.add("emotion_tags");
 
@@ -138,16 +199,25 @@ function addNoteContent(newNote, title, content, tags) {
                 let tagElement = document.createElement("span");
                 tagElement.classList.add("emotion-span");
                 tagElement.textContent = tag;
+
+                // Assign a predefined background color to the tag
+                tagElement.style.backgroundColor = getTagColor(tag);
+
                 emotion_tags.appendChild(tagElement);
             });
 
             // Save the note with the generated tags
-            saveNote(newNote.id, title, content, emotion_tags.innerHTML);
+            saveNote(newNote.id, title, content, emotion_tags.innerHTML, pinned);
         });
     } else {
         console.log("function called with tags.");
         console.log(tags);
+
+        // Parse existing tags and assign colors
         emotion_tags.innerHTML = tags;
+        Array.from(emotion_tags.children).forEach((tagElement) => {
+            tagElement.style.backgroundColor = getTagColor(tagElement.textContent);
+        });
     }
 
     let title_field = document.createElement("h3");
@@ -163,27 +233,57 @@ function addNoteContent(newNote, title, content, tags) {
     deleteButton.classList.add("delete-btn");
     deleteButton.style =
         "margin-top: 10px; background-color: white; color: #c0392b; cursor: pointer; border: none;";
-
-    // Add trash icon (Font Awesome or SVG)
     deleteButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
     `;
-
     deleteButton.onclick = function (event) {
         localStorage.setItem("noteNo", parseInt(localStorage.getItem("noteNo")) - 1); // Decrement note number
         event.stopPropagation(); // Prevent triggering the note click event
-        // Remove note from localStorage
-        localStorage.removeItem(newNote.id);
-
-        // Remove note from the DOM
-        newNote.remove();
+        localStorage.removeItem(newNote.id); // Remove note from localStorage
+        newNote.remove(); // Remove note from the DOM
         reorderNotes();
+        togglePinnedNotesHeading(); // Check and toggle the visibility of the heading
+    };
+
+    // Create pin/unpin button
+    let pinButton = document.createElement("button");
+    pinButton.classList.add("pin-btn");
+    pinButton.style =
+        "margin-top: 10px; background-color: white; color: #4b7057; cursor: pointer; border: none;";
+    pinButton.textContent = pinned ? "📍 Unpin" : "📌 Pin"; // Set button text based on pinned status
+    pinButton.onclick = function (event) {
+        event.stopPropagation();
+        const pinnedContainer = document.getElementById("pinnedNotesContainer");
+        const notesContainer = document.getElementById("notesContainer");
+
+        if (newNote.parentElement === pinnedContainer) {
+            // If the note is already pinned, unpin it
+            notesContainer.appendChild(newNote);
+            pinButton.textContent = "📌 Pin";
+
+            // Update the pinned status in localStorage
+            const noteData = JSON.parse(localStorage.getItem(newNote.id));
+            noteData.pinned = false;
+            localStorage.setItem(newNote.id, JSON.stringify(noteData));
+        } else {
+            // If the note is not pinned, pin it
+            pinnedContainer.appendChild(newNote);
+            pinButton.textContent = "📍 Unpin";
+
+            // Update the pinned status in localStorage
+            const noteData = JSON.parse(localStorage.getItem(newNote.id));
+            noteData.pinned = true;
+            localStorage.setItem(newNote.id, JSON.stringify(noteData));
+        }
+
+        togglePinnedNotesHeading(); // Check and toggle the visibility of the heading
     };
 
     newNote.appendChild(emotion_tags);
     newNote.appendChild(title_field);
     newNote.appendChild(content_field);
-    newNote.appendChild(deleteButton); // Add delete button to the note
+    newNote.appendChild(deleteButton);
+    newNote.appendChild(pinButton);
 
     // Make note clickable to open full view
     newNote.onclick = function () {
@@ -223,29 +323,38 @@ function reorderNotes() {
 }
 
 // Load Notes from Local Storage on Page Load
-function loadNotes(caller) {
-    const noteContainer = document.getElementById("notesContainer");
-    var noteId = "";
+function loadNotes() {
+    const notesContainer = document.getElementById("notesContainer");
+    const pinnedContainer = document.getElementById("pinnedNotesContainer");
+    let noteId = "";
 
-    for (let i = 1; i < parseInt(localStorage.getItem("noteNo")) + 1; i++) {
-        console.log("running once")
+    for (let i = 1; i <= parseInt(localStorage.getItem("noteNo")) || 0; i++) {
         noteId = "note" + i; // Generate note ID
-        console.log(noteId)
         const noteData = JSON.parse(localStorage.getItem(noteId));
-        console.log(noteData)
-        let newNote = document.createElement("div");
-        newNote.id = noteId; // Set unique ID for the note
-        newNote.classList.add("note-card");
-        addNoteContent(newNote, noteData.title, noteData.content, noteData.emotion_tags);
-        noteContainer.appendChild(newNote);
+
+        if (noteData) {
+            let newNote = document.createElement("div");
+            newNote.id = noteId; // Set unique ID for the note
+            newNote.classList.add("note-card");
+
+            addNoteContent(newNote, noteData.title, noteData.content, noteData.emotion_tags, noteData.pinned);
+
+            // Append to the correct container based on the pinned status
+            if (noteData.pinned) {
+                pinnedContainer.appendChild(newNote);
+            } else {
+                notesContainer.appendChild(newNote);
+            }
+        }
     }
+
+    togglePinnedNotesHeading(); // Check pinned notes on page load
 }
 
 // Call loadNotes on page load
-document.addEventListener("DOMContentLoaded", loadNotes);
-
-document.querySelector(".signup-btn").addEventListener("click", () => {
-    window.location.href = "../sign-up/";
+document.addEventListener("DOMContentLoaded", () => {
+    loadNotes();
+    togglePinnedNotesHeading(); // Check pinned notes on page load
 });
 
 async function generateTags(title, content) {

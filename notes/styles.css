@@ -77,10 +77,13 @@ nav a {
 }
 
 /* Notes Container */
-.notes-container {
-    padding: 2.5%;
+.notes-container,.pinned-notes-container {
+    padding: 2%;
     display: flex;
     flex-wrap: wrap;
+}
+.notes_heading {
+    padding-inline: 3.5%;
 }
 
 /* Note Card */
