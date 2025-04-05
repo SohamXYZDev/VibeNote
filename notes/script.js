@@ -65,7 +65,11 @@ function closeFullNote(caller) {
     };
 
     console.log(localStorage.getItem("noteNo"))
-    editNote(noteId, updatedNote.title, updatedNote.content, fullNoteEmotionTags.innerHTML); // Update note in localStorage
+    var is_pinned = false;
+    if (document.getElementById(noteId).parentElement.id == "pinnedNotesContainer") {
+        is_pinned = true;
+    }
+    editNote(noteId, updatedNote.title, updatedNote.content, fullNoteEmotionTags.innerHTML , is_pinned); // Update note in localStorage
     
     document.getElementById("fullNoteModal").style.display = "none";
     document.querySelector(".content-wrapper").classList.remove("blurred"); // Remove blur effect
@@ -73,16 +77,43 @@ function closeFullNote(caller) {
     localStorage.removeItem("openedNote")
 }
 
-function editNote(caller, title, content, emotion_tags){
+function editNote(caller, title, content, emotion_tags_passed, pinned = false){
+    
+    const note = document.getElementById(caller);
+    const emotion_tags = note.querySelector(".emotion_tags"); // Select the emotion tags div
+    let spinner = document.createElement("div");
+    spinner.classList.add("spinner");
+    spinner.style = "margin: 10px auto;"; // Center the spinner
+    emotion_tags.appendChild(spinner);
     console.log(title)
     console.log(content)
     console.log(caller)
-    const note = document.getElementById(caller);
     console.log(note)
     note.querySelector(".note-card h3").innerText = title;
     note.querySelector(".note-card p").innerText = content;
-    note.querySelector(".emotion_tags").innerHTML = emotion_tags;
-    localStorage.setItem(caller, JSON.stringify({ title, content, emotion_tags })); // Save updated note to localStorage
+    generateTags(title, content).then((generatedTags) => {
+        console.log("Generated Tags:", generatedTags);
+
+        // Remove the spinner once tags are generated
+        spinner.remove();
+
+        // Add the generated tags to the note
+        
+        // clear existing tags
+        emotion_tags.innerHTML = ""; // Clear existing tags
+        generatedTags.forEach((tag) => {
+            let tagElement = document.createElement("span");
+            tagElement.classList.add("emotion-span");
+            tagElement.textContent = tag;
+
+            // Assign a predefined background color to the tag
+            tagElement.style.backgroundColor = getTagColor(tag);
+            emotion_tags.appendChild(tagElement);
+        });
+
+        // Save the note with the generated tags
+        saveNote(note.id, title, content, emotion_tags.innerHTML, pinned);
+    }); // Save updated note to localStorage
 }
 
 // Add Note to Page and Save to Local Storage
@@ -130,7 +161,7 @@ function togglePinnedNotesHeading() {
         pinnedHeading.style.display = "none"; // Hide the heading if no pinned notes
         pinnedContainer.style.display = "none"
     } else {
-        pinnedContainer.style.display = "block"; // Show the pinned notes container
+        pinnedContainer.style.display = "flex"; // Show the pinned notes container
         pinnedHeading.style.display = "block"; // Show the heading if there are pinned notes
     }
 }
