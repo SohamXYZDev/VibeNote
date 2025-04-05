@@ -20,10 +20,14 @@ const formattedDate = date.toLocaleDateString('en-US', options);
 // Open "Add Note" Modal
 function openModal() {
     document.getElementById("noteModal").style.display = "block";
+    document.querySelector(".content-wrapper").classList.add("blurred"); // Add blur effect
+    document.getElementById("overlay").classList.add("active"); // Show overlay
 }
 
 // Close "Add Note" Modal
 function closeModal() {
+    document.querySelector(".content-wrapper").classList.remove("blurred"); // Remove blur effect
+    document.getElementById("overlay").classList.remove("active"); // Hide overlay
     document.getElementById("noteModal").style.display = "none";
     document.getElementById("noteTitle").value = "";
     document.getElementById("noteContent").value = "";

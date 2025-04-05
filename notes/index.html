@@ -35,23 +35,24 @@
       </button>
 
       <!-- Add Note Modal -->
-      <div class="modal" id="noteModal">
-        <h2>New Note</h2>
-        <input type="text" id="noteTitle" placeholder="Title" />
-        <textarea
-          id="noteContent"
-          placeholder="Write your note..."
-          rows="4"
-        ></textarea>
-        <div class="modal-buttons">
-          <button class="save-btn hover" onclick="addNote()">Save</button>
-          <button class="cancel-btn hover" onclick="closeModal()">
-            Cancel
-          </button>
-        </div>
-      </div>
+      
     </div>
     <div class="overlay" id="overlay"></div>
+    <div class="modal" id="noteModal">
+      <h2>New Note</h2>
+      <input type="text" id="noteTitle" placeholder="Title" />
+      <textarea
+        id="noteContent"
+        placeholder="Write your note..."
+        rows="4"
+      ></textarea>
+      <div class="modal-buttons">
+        <button class="save-btn hover" onclick="addNote()">Save</button>
+        <button class="cancel-btn hover" onclick="closeModal()">
+          Cancel
+        </button>
+      </div>
+    </div>
     <!-- Full Note Modal -->
     <div class="full-note-modal" id="fullNoteModal">
       <div id="fullNoteEmotionTags"></div>
