@@ -1,4 +1,3 @@
-// Scales for reference
 const energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent", "Restless", "Anxious", "Stressed", "Exhausted"];
 const moodScale = ["Joyful", "Content", "Chill", "Neutral", "Indifferent", "Disappointed", "Sad", "Hopeless", "Suicidal"];
 const clarityScale = ["Sharp", "Focused", "Clear-headed", "Balanced", "Distracted", "Foggy", "Confused", "Overwhelmed", "Mentally Numb"];
@@ -6,7 +5,6 @@ const senseOfPurposeScale = ["Driven", "Focused", "Aligned", "Curious", "Uncerta
 
 console.log("🟢 Script loaded. Checking localStorage data...");
 
-// Fetch the last 10 entries from localStorage
 function getAllEntries() {
     const notes = [];
     const totalNotes = parseInt(localStorage.getItem("noteNo")) || 0;
@@ -20,17 +18,15 @@ function getAllEntries() {
 }
 
 
-// Helper function to extract the date from the note title
 function extractDateFromTitle(title) {
-    const datePattern = /\((.*?)\)/; // Matches the date inside parentheses
+    const datePattern = /\((.*?)\)/; 
     const match = title.match(datePattern);
     if (match && match[1]) {
-        return new Date(match[1]); // Parse the date string into a Date object
+        return new Date(match[1]); 
     }
     return null;
 }
 
-// Helper function to filter notes by time period
 function filterNotesByTimePeriod(entries, period) {
     const now = new Date();
     return entries.filter((entry) => {
@@ -56,7 +52,6 @@ function filterNotesByTimePeriod(entries, period) {
     });
 }
 
-// Prepare data for the chart
 function prepareChartData(entries) {
     console.log("⚙️ Preparing chart data...");
 
@@ -82,17 +77,14 @@ function prepareChartData(entries) {
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = entry.emotion_tags;
 
-        // Extract text content from each <span>
         const tags = Array.from(tempDiv.querySelectorAll(".emotion-span")).map(span => span.textContent.trim());
         console.log(`🎭 Extracted Tags for Entry ${index + 1}:`, tags);
 
-        // Push numerical indices
         energyData.push(energyScale.indexOf(tags[0]) + 1 || 0);
         moodData.push(moodScale.indexOf(tags[1]) + 1 || 0);
         clarityData.push(clarityScale.indexOf(tags[2]) + 1 || 0);
         purposeData.push(senseOfPurposeScale.indexOf(tags[3]) + 1 || 0);
 
-        // Push original names
         originalEnergyData.push(tags[0]);
         originalMoodData.push(tags[1]);
         originalClarityData.push(tags[2]);
@@ -113,7 +105,6 @@ function prepareChartData(entries) {
     };
 }
 
-// Render the chart
 function renderChart(chartData, canvasId) {
     console.log(`📈 Rendering chart for ${canvasId} with data:`, chartData);
 
@@ -202,19 +193,16 @@ function renderChart(chartData, canvasId) {
 }
 
 
-// Load and render the chart on page load
 document.addEventListener("DOMContentLoaded", () => {
     console.log("🚀 Page loaded. Fetching entries...");
-    const allEntries = getAllEntries(); // Fetch all entries from localStorage
+    const allEntries = getAllEntries(); 
 
-    // Check for "Suicidal" entries
     const hasSuicidalEntries = allEntries.some((entry) => {
         if (!entry.emotion_tags) return false;
 
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = entry.emotion_tags;
 
-        // Extract text content from each <span>
         const tags = Array.from(tempDiv.querySelectorAll(".emotion-span")).map((span) =>
             span.textContent.trim()
         );
@@ -222,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return tags.includes("Suicidal");
     });
 
-    // Update the health-label if "Suicidal" entries are found
     const healthLabel = document.getElementById("health-label");
     if (hasSuicidalEntries) {
         healthLabel.innerHTML = `
