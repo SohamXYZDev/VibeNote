@@ -156,27 +156,27 @@ nav a {
 
 .footer {
     margin-top: 10%;
-    background: #eaf4e1; /* Match the header background */
-    color: #2e4939; /* Match the text color */
+    background: #eaf4e1;
+    color: #2e4939;
     text-align: center;
     padding: 15px 0;
     font-size: 14px;
-    border-top: 1px solid #d9ead3; /* Subtle border for separation */
+    border-top: 1px solid #d9ead3;
 }
 html, body {
-    height: 100%; /* Ensure the body and html take up the full height of the viewport */
+    height: 100%;
 }
 
 body {
     display: flex;
-    flex-direction: column; /* Arrange children (header, main, footer) in a column */
+    flex-direction: column;
 }
 
 .container {
-    flex: 1; /* Allow the container to grow and take up available space */
+    flex: 1;
 }
 
 .footer {
-    margin-top: 0; /* Remove the margin-top to avoid pushing it up */
-    flex-shrink: 0; /* Prevent the footer from shrinking */
+    margin-top: 0;
+    flex-shrink: 0;
 }

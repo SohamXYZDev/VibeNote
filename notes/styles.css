@@ -1,4 +1,4 @@
-/* Global Styles */
+
 body {
     font-family: 'Arial', sans-serif;
     background: #eef2e6;
@@ -76,7 +76,7 @@ nav a {
     font-weight: bold;
 }
 
-/* Notes Container */
+
 .notes-container,.pinned-notes-container {
     padding: 2%;
     display: flex;
@@ -86,7 +86,7 @@ nav a {
     padding-inline: 3.5%;
 }
 
-/* Note Card */
+
 .note-card {
     margin-inline: 10px;
     margin-bottom: 20px;
@@ -94,7 +94,7 @@ nav a {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: calc(((100% - 80px) - 120px) / 4); /* Your original formula */
+    width: calc(((100% - 80px) - 120px) / 4);
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
@@ -117,7 +117,7 @@ nav a {
     color: #4b6144;
 }
 
-/* Add Note Button */
+
 .add-note-btn {
     background: #4b7057;
     font-weight: bold;
@@ -134,7 +134,7 @@ nav a {
     background: #3a5c48;
 }
 
-/* Modal Styles */
+
 .modal {
     display: none;
     position: fixed;
@@ -192,7 +192,7 @@ nav a {
     color: #333;
 }
 
-/* Full Note Modal */
+
 .full-note-modal {
     z-index: 1000;
     display: none;
@@ -219,25 +219,25 @@ nav a {
 }
 .footer {
     margin-top: 10%;
-    background: #eaf4e1; /* Match the header background */
-    color: #2e4939; /* Match the text color */
+    background: #eaf4e1;
+    color: #2e4939;
     text-align: center;
     padding: 15px 0;
     font-size: 14px;
-    border-top: 1px solid #d9ead3; /* Subtle border for separation */
+    border-top: 1px solid #d9ead3;
 }
 html, body {
-    height: 100%; /* Ensure the body and html take up the full height of the viewport */
+    height: 100%;
 }
 
 body {
     display: flex;
-    flex-direction: column; /* Arrange children (header, main, footer) in a column */
+    flex-direction: column;
 }
 
 .footer {
-    margin-top: 0; /* Remove the margin-top to avoid pushing it up */
-    flex-shrink: 0; /* Prevent the footer from shrinking */
+    margin-top: 0;
+    flex-shrink: 0;
 }
 .close-btn {
     background: #4b7057;
@@ -279,13 +279,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    z-index: 999; /* Below the modal but above other content */
-    display: none; /* Hidden by default */
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
 }
 
 .overlay.active {
-    display: block; /* Show overlay when active */
+    display: block;
 }
 .delete-btn {
     display: inline-flex;
@@ -296,18 +296,18 @@ body {
     cursor: pointer;
 }
 .delete-btn svg {
-    fill: #c0392b; /* Set the color of the SVG */
-    width: 16px; /* Adjust size */
+    fill: #c0392b;
+    width: 16px;
     height: 16px;
 }
 .delete-btn:hover svg {
-    fill: #c0392b; /* Darker red on hover */
-    transform: scale(1.2); /* Slight zoom effect */
+    fill: #c0392b;
+    transform: scale(1.2);
     transition: transform 0.2s ease-in-out;
 }
 .spinner {
-    border: 4px solid #eaf4e1; /* Light green background */
-    border-top: 4px solid #4b7057; /* Dark green spinner */
+    border: 4px solid #eaf4e1;
+    border-top: 4px solid #4b7057;
     border-radius: 50%;
     width: 20px;
     height: 20px;
