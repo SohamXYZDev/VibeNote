@@ -1,4 +1,4 @@
-# VibeNote
+# ✨📝VibeNote
 
 **Your mood, your words — captured, analyzed, and understood.**
 
