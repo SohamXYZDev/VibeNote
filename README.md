@@ -27,9 +27,7 @@ VibeNote is an AI-powered journaling and mood-tracking app designed to help you 
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Node.js, Express
-- **Database:** (If applicable – e.g., MongoDB / local storage)
 - **AI Integration:** Google Gemini API (Generative Language API)
-- **Voice Input:** Web Speech API
 
 ---
 
@@ -47,7 +45,7 @@ VibeNote is an AI-powered journaling and mood-tracking app designed to help you 
 - Journaling with emotional awareness
 - Mood tracking over time
 - Mental health check-ins
-- Daily self-reflection with AI-enhanced support
+- Self-reflection with AI-enhanced support
 
 ---
 
@@ -74,7 +72,6 @@ MIT License
 
 ## Author
 
-**Soham Ghosh**  
-Built with passion during [Hackathon Name]  
-[LinkedIn] | [Portfolio] | [Devpost]
+**Soham**  
+[[LinkedIn](https://devpost.com/SohamXYZ)] | [[Devpost](https://devpost.com/SohamXYZ)]
 
