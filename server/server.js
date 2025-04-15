@@ -44,5 +44,5 @@ Return the tags in a comma-separated format, without double quotes, and without 
     }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT ||3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
