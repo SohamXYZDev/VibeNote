@@ -6,37 +6,38 @@ document.querySelector(".get-started-btn").addEventListener("click", () => {
     window.location.href = "../sign-up/";
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const featureList = document.querySelector(".feature-list");
 
-    if (featureList) {
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+const featureList = document.querySelector(".feature-list");
+const featureCards = document.querySelectorAll(".feature-item");
+// card0 is first child of featureList
 
-        featureList.addEventListener("mousedown", (e) => {
-            isDown = true;
-            featureList.classList.add("active");
-            startX = e.pageX - featureList.offsetLeft;
-            scrollLeft = featureList.scrollLeft;
-        });
+const prevBtn = document.getElementById("carousel-prev");
+const nextBtn = document.getElementById("carousel-next");
+const nav = document.getElementById("carousel-nav");
 
-        featureList.addEventListener("mouseleave", () => {
-            isDown = false;
-            featureList.classList.remove("active");
-        });
-
-        featureList.addEventListener("mouseup", () => {
-            isDown = false;
-            featureList.classList.remove("active");
-        });
-
-        featureList.addEventListener("mousemove", (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - featureList.offsetLeft;
-            const walk = (x - startX) * 2; // Adjust scroll speed
-            featureList.scrollLeft = scrollLeft - walk;
-        });
+// ...existing code...
+let currentIndex = 2; // Start on the middle card
+prevBtn.addEventListener("click", () => {
+    console.log("Previous button clicked");
+    console.log("Current index before decrement: " + currentIndex);
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentIndex = 2; // Wrap around to the last card
     }
+    console.log("Current index after decrement: " + currentIndex);
+    console.log(featureCards[currentIndex]);
+    featureList.appendChild(featureCards[currentIndex]);
 });
+nextBtn.addEventListener("click", () => {
+    console.log("Next button clicked");
+    console.log("Current index before increment: " + currentIndex);
+    currentIndex++;
+    if (currentIndex > 2) {
+        currentIndex = 0; // Wrap around to the first card
+    }
+    // Move the current card to the end of the list
+    console.log("Current index after increment: " + currentIndex);
+    console.log(featureCards[currentIndex]);
+    featureList.appendChild(featureCards[currentIndex]);
+});
+// ...existing code...

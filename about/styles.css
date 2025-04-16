@@ -252,3 +252,32 @@ nav a {
     border-top: 1px solid #d9ead3;
 }
 
+
+/* ...existing code... */
+@media (max-width: 768px) {
+    .feature-item {
+        width: 100%;
+    }
+    .carousel-nav {
+        display: flex !important;
+        justify-content: center;
+        margin-bottom: 10px;
+        gap: 20px;
+    }
+    .carousel-nav button {
+        background: #4b7057;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .carousel-nav button:active,
+    .carousel-nav button:focus {
+        background: #3a5c48;
+    }
+}
+/* ...existing code... */
