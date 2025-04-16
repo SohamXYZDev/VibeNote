@@ -11,6 +11,10 @@ app.use(cors());
 // Initialize Gemini with API key from .env
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_KEY);
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "OK" });
+});
+
 app.post("/generate-tags", async (req, res) => {
     console.log("Received request");
     const { title, content } = req.body;
