@@ -1,0 +1,5 @@
+[[ignore]]
+  path = "server/"
+
+[[ignore]]
+  path = "assets/"
