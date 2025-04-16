@@ -1,3 +1,6 @@
+const apiUrl = "https://vibenote.onrender.com"; 
+const fallbackApiUrl = "http://localhost:3000"; // Fallback URL
+
 const energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent", "Restless", "Anxious", "Stressed", "Exhausted"];
 const moodScale = ["Joyful", "Content", "Chill", "Neutral", "Indifferent", "Disappointed", "Sad", "Hopeless", "Suicidal"];
 const clarityScale = ["Sharp", "Focused", "Clear-headed", "Balanced", "Distracted", "Foggy", "Confused", "Overwhelmed", "Mentally Numb"];
@@ -16,6 +19,7 @@ const senseOfPurposeScale = [
 const date = new Date();
 const options = { year: 'numeric', month: 'short', day: 'numeric' };
 const formattedDate = date.toLocaleDateString('en-US', options);
+
 
 // Open "Add Note" Modal
 function openModal() {
@@ -392,9 +396,23 @@ document.addEventListener("DOMContentLoaded", () => {
     togglePinnedNotesHeading(); // Check pinned notes on page load
 });
 
+// Function to check if API is available
+async function checkApiAvailability(url) {
+    try {
+        const response = await fetch(url);
+        return response.ok; // Returns true if response is successful
+    } catch (error) {
+        console.error('API check failed:', error);
+        return false; // Returns false if the request fails
+    }
+}
+
 async function generateTags(title, content) {
     try {
-        const response = await fetch("http://localhost:3000/generate-tags", {
+        const url = await checkApiAvailability(apiUrl) ? fallbackApiUrl : apiUrl;
+        console.log(url)
+
+        const response = await fetch(`${url}/generate-tags`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
