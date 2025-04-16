@@ -36,7 +36,6 @@ Return the tags in a comma-separated format, without double quotes, and without 
         const text = response.text();
 
         const tags = text.trim().split(",").map((tag) => tag.trim());
-        console.log(tags);
         res.json({ tags });
     } catch (error) {
         console.error("Gemini API error:", error);
