@@ -25,7 +25,7 @@ Title: "${title}"
 Content: "${content}"
 
 You may select one from each of these scales:
-energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent", "Restless", "Anxious", "Stressed", "Exhausted"],
+energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent", "Restless", "Anxious", "Frustrated", "Exhausted"],
 moodScale = ["Joyful", "Content", "Chill", "Neutral", "Indifferent", "Disappointed", "Sad", "Hopeless", "Suicidal"],
 clarityScale = ["Sharp", "Focused", "Clear-headed", "Balanced", "Distracted", "Foggy", "Confused", "Overwhelmed", "Mentally Numb"],
 senseOfPurposeScale = ["Driven", "Focused", "Aligned", "Curious", "Uncertain", "Lost", "Conflicted", "Empty", "Detached"]
