@@ -188,7 +188,7 @@ function getTagColor(tag) {
         motivated: "#ffa500", // Orange for "Motivated"
         calm: "#87ceeb", // Sky blue for "Calm"
         anxious: "#ffb6c1", // Light pink for "Anxious"
-        stressed: "#ff6347", // Tomato red for "Stressed"
+        frustrated: "#ff6347", // Tomato red for "Stressed"
         exhausted: "#d2b48c", // Tan for "Exhausted"
         sharp: "#f0e68c", // Khaki for "Sharp"
         focused: "#f5deb3", // Wheat for "Focused"
