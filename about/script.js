@@ -2,8 +2,7 @@ document.querySelector(".signup-btn").addEventListener("click", () => {
     window.location.href = "../sign-up/";
 });
 document.querySelector(".get-started-btn").addEventListener("click", () => {
-    window.lo
-    cation.href = "../sign-up/";
+    window.location.href = "../sign-up/";
 });
 let startX = 0;
 let endX = 0;
