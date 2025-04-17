@@ -21,7 +21,7 @@
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu hidden" id="mobile-menu">
             <a class="hover" href="../about/">About</a>
             <a class="hover" href="../notes/">Notes</a>
             <a class="hover" href="../statistics/">Statistics</a>
@@ -51,23 +51,46 @@
         <button class="hover get-started-btn">Get Started</button>
     </section>
     <section class="features">
-        <h2>Features</h2>
-        <div class="carousel-nav" id="carousel-nav" style="display:none;">
-            <button id="carousel-prev" aria-label="Previous Feature">&#8592;</button>
-            <button id="carousel-next" aria-label="Next Feature">&#8594;</button>
+        
+        <h2>Features</h2> 
+        <div id="current_card" style="display: none;">
+            <div class="card_cont">
+                <div id="card0" class="hover feature-item">
+                    <span>😊</span>
+                    <h3>Quick Mood Logging</h3>
+    
+                    <p>Easily tag your journal entries with your current mood.</p>
+                </div>
+                <div id="card1" class="hover feature-item">
+                    <span>⭐</span>
+                    <h3>Personalized Reflections</h3>
+                    <p>Get insights based on your emotional trends over time.</p>
+                </div>
+                <div id="card2" class="hover feature-item">
+                    <span>🔒</span>
+                    <h3>Simple and Private</h3>
+                    <p>Write honestly in a safe space that's just for you.</p>
+                </div>
+                <div class="pagination-dots" id="pagination-dots">
+                    <span class="dot" id="dot0">...</span>
+                    <span class="dot" id="dot1">...</span>
+                    <span class="dot" id="dot2">...</span>
+                </div>
+            </div>
         </div>
         <div class="feature-list">
-            <div class="hover feature-item">
+            <div id="card0" class="hover feature-item">
                 <span>😊</span>
                 <h3>Quick Mood Logging</h3>
+
                 <p>Easily tag your journal entries with your current mood.</p>
             </div>
-            <div class="hover feature-item">
+            <div id="card1" class="hover feature-item">
                 <span>⭐</span>
                 <h3>Personalized Reflections</h3>
                 <p>Get insights based on your emotional trends over time.</p>
             </div>
-            <div class="hover feature-item">
+            <div id="card2" class="hover feature-item">
                 <span>🔒</span>
                 <h3>Simple and Private</h3>
                 <p>Write honestly in a safe space that's just for you.</p>

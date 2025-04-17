@@ -1,49 +1,64 @@
-
 document.querySelector(".signup-btn").addEventListener("click", () => {
     window.location.href = "../sign-up/";
 });
 document.querySelector(".get-started-btn").addEventListener("click", () => {
-    window.location.href = "../sign-up/";
+    window.lo
+    cation.href = "../sign-up/";
+});
+let startX = 0;
+let endX = 0;
+let currentCardIndex = 0;
+
+const current_card = document.getElementById(".current_card");
+const cardCont = document.querySelector(".card_cont");
+const cards = cardCont.querySelectorAll(".feature-item");
+const dots = document.querySelectorAll(".dot");
+
+
+function updateActiveCard(index) {
+    // Hide all cards and remove the active class
+    Array.from(cards).forEach((card, i) => {
+        card.style.display = i === index ? "block" : "none";
+        card.classList.toggle("active", i === index); // Add 'active' class to the current card
+    });
+
+    // Update pagination dots
+    Array.from(dots).forEach((dot, i) => {
+        dot.style.backgroundColor = i === index ? "#44a86c" : "#75ce98";
+    });
+}
+
+// Initialize the first card as active
+updateActiveCard(currentCardIndex);
+
+// add EventListener to each card
+cards.forEach((card, index) => {
+    card.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX; // Record the starting X position
+    });
+    card.addEventListener("touchmove", (e) => {
+        endX = e.touches[0].clientX; // Update the current X position
+    });
 });
 
-
-const featureList = document.querySelector(".feature-list");
-const featureCards = document.querySelectorAll(".feature-item");
-// card0 is first child of featureList
-
-const prevBtn = document.getElementById("carousel-prev");
-const nextBtn = document.getElementById("carousel-next");
-const nav = document.getElementById("carousel-nav");
-
-let currentIndex = 1; // Start on the middle card
-// ...existing code...
-nextBtn.addEventListener("click", () => {
-    console.log("Next button clicked");
-    console.log("Current index before increment: " + currentIndex);
-    if (!currentIndex == 0) {
-        currentIndex--;
-    } else {
-        currentIndex = 2; // Wrap around to the last card
+document.addEventListener("touchend", () => {
+    if (startX > endX && startX - endX > 50) {
+        // Left swipe detected
+        if (currentCardIndex < cards.length - 1) {
+            currentCardIndex++;
+            updateActiveCard(currentCardIndex);
+        }
+    } else if (startX < endX && endX - startX > 50) {
+        // Right swipe detected
+        if (currentCardIndex > 0) {
+            currentCardIndex--;
+            updateActiveCard(currentCardIndex);
+        }
     }
-    if (currentIndex > 2) {
-        currentIndex = 0; // Wrap around to the first card
-    }
-    // Move the current card to the end of the list
-    console.log("Current index after increment: " + currentIndex);
-    console.log(featureCards[currentIndex]);
-    featureList.appendChild(featureCards[currentIndex]);
-    currentIndex+=2;
-})
-prevBtn.addEventListener("click", () => {
-    console.log("Previous button clicked");
-    console.log("Current index before decrement: " + currentIndex);
-
-
-
-    // Move the current card to the beginning of the list
-    console.log("Current index after decrement: " + currentIndex);
-    console.log(featureCards[currentIndex]);
-    featureList.insertBefore(featureCards[currentIndex], featureList.firstChild);
 });
 
-// ...existing code...
+const menu = document.getElementById("mobile-menu")
+function toggleMenu() {
+    console.log("clicked")
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}

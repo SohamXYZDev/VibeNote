@@ -251,3 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
         renderChart(yearlyData, "yearlyChart");
     }
 });
+
+const menu = document.getElementById("mobile-menu")
+function toggleMenu() {
+    console.log("clicked")
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}

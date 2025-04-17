@@ -13,3 +13,9 @@ document.querySelector(".signup-popup-btn").addEventListener("click", () => {
 document.querySelector(".signup-btn").addEventListener("click", () => {
     window.location.href = "../sign-up/";
 });
+
+const menu = document.getElementById("mobile-menu")
+function toggleMenu() {
+    console.log("clicked")
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}

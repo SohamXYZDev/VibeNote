@@ -427,3 +427,10 @@ async function generateTags(title, content) {
         console.error("Error generating tags:", error);
     }
 }
+
+
+const menu = document.getElementById("mobile-menu")
+function toggleMenu() {
+    console.log("clicked")
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+}

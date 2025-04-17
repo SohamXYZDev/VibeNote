@@ -13,11 +13,22 @@
       <header>
         <div class="hover logo" style="cursor: pointer;" onclick="window.location.href = '../about/'">VibeNote</div>
         <nav>
-          <a class="hover" href="../about/">About</a>
-          <a class="hover" href="../notes/">Notes</a>
-          <a class="hover" href="../statistics/">Statistics</a>
+            <a class="hover" href="../about/">About</a>
+            <a class="hover" href="../notes/">Notes</a>
+            <a class="hover" href="../statistics/">Statistics</a>
+            <button class="signup-btn hover">Sign-up</button>
         </nav>
-      </header>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div class="mobile-menu hidden" id="mobile-menu">
+            <a class="hover" href="../about/">About</a>
+            <a class="hover" href="../notes/">Notes</a>
+            <a class="hover" href="../statistics/">Statistics</a>
+            <button class="signup-btn hover">Sign-up</button>
+    </header>
       <h2 class="notes_heading" id="pinned_notes_heading">Pinned Notes</h2>
       <div class="pinned-notes-container" id="pinnedNotesContainer">
         

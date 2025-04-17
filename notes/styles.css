@@ -33,11 +33,52 @@ header {
     align-items: center;
     padding: 20px 40px;
     background: transparent;
+    background: transparent;
 }
-
 .logo {
     font-size: 24px;
     font-weight: bold;
+}
+
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #2e4939;
+}
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin-bottom: 5px; 
+    background-color: #2e4939;
+    transition: all 0.3s ease-in-out;
+}
+.hamburger:hover {
+    color: #4b7057;
+}
+.mobile-menu {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    background: #E1ECCC;
+}
+.hidden {
+    display: none;
+}
+.mobile-menu a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #2e4939;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px 0;
 }
 
 nav {
@@ -69,11 +110,39 @@ nav a {
 .signup-btn:hover {
     background: #3a5c48;
 }
-.nav-links a {
-    text-decoration: none;
-    color: #2f4031;
-    margin-left: 20px;
-    font-weight: bold;
+
+/* Media query for header menu */
+@media (max-width: 768px) {
+    header nav {
+        display: none;
+    }
+    header {
+        padding-inline: 20px;
+    }
+    .logo{
+        font-size: 20px;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    header nav {
+        display: none;
+    }
+    header.active nav {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: black;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    section {
+        padding-inline: 20px !important;
+    }
 }
 
 
