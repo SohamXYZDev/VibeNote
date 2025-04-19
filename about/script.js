@@ -1,8 +1,8 @@
 document.querySelector(".signup-btn").addEventListener("click", () => {
-    window.location.href = "../sign-up/";
+    window.location.href = "../notes/";
 });
 document.querySelector(".get-started-btn").addEventListener("click", () => {
-    window.location.href = "../sign-up/";
+    window.location.href = "../notes/";
 });
 let startX = 0;
 let endX = 0;
