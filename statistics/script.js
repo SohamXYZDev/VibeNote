@@ -1,5 +1,5 @@
 
-const energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent", "Restless", "Anxious", "Stressed", "Exhausted"];
+const energyScale = ["Thrilled", "Energetic", "Motivated", "Calm", "Indifferent", "Restless", "Anxious", "Frustrated", "Exhausted"];
 const moodScale = ["Joyful", "Content", "Chill", "Neutral", "Indifferent", "Disappointed", "Sad", "Hopeless", "Suicidal"];
 const clarityScale = ["Sharp", "Focused", "Clear-headed", "Balanced", "Distracted", "Foggy", "Confused", "Overwhelmed", "Mentally Numb"];
 const senseOfPurposeScale = ["Driven", "Focused", "Aligned", "Curious", "Uncertain", "Lost", "Conflicted", "Empty", "Detached"];
@@ -104,6 +104,7 @@ function prepareChartData(entries) {
 function renderChart(chartData, canvasId) {
     const ctx = document.getElementById(canvasId).getContext("2d");
 
+    console.log(chartData)
     new Chart(ctx, {
         type: "line",
         data: {
@@ -155,10 +156,10 @@ function renderChart(chartData, canvasId) {
                             const index = context.dataIndex;
                             const datasetLabel = context.dataset.label;
 
-                            const moodDetails = `Mood: ${chartData.originalMoodData[index]}`;
-                            const energyDetails = `Energy: ${chartData.originalEnergyData[index]}`;
-                            const clarityDetails = `Clarity: ${chartData.originalClarityData[index]}`;
-                            const purposeDetails = `Purpose: ${chartData.originalPurposeData[index]}`;
+                            const moodDetails = `${chartData.originalMoodData[index]}`;
+                            const energyDetails = `${chartData.originalEnergyData[index]}`;
+                            const clarityDetails = `${chartData.originalClarityData[index]}`;
+                            const purposeDetails = `${chartData.originalPurposeData[index]}`;
 
                             switch (datasetLabel) {
                                 case "Energy": return `${datasetLabel} - ${energyDetails}`;
