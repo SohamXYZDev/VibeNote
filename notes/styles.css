@@ -73,7 +73,9 @@ header {
     display: inline-block;
     margin: 10px 0;
 }
-
+.mobile-menu button {
+    margin-left: 0;
+}
 nav {
     display: flex;
     align-items: center;
