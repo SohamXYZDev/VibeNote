@@ -164,3 +164,9 @@ section h2 {
     margin-bottom: 20px;
     color: #2e4939;
 }
+
+@media (max-width: 768px) {
+    canvas {
+        min-height: 250px; /* Keep the minimum height on smaller screens */
+    }
+}
