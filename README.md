@@ -1,5 +1,18 @@
 # ✨📝VibeNote
 
+## How to run locally
+
+1) Clone the repo
+```bash
+git clone https://github.com/SohamXYZDev/VibeNote
+```
+2) Create an .env file in the /server/ directory
+3) Put your Gemini API key in .env file as
+4) Run the node server
+```bash
+node server.js
+```
+
 **Your mood, your words — captured, analyzed, and understood.**
 
 VibeNote is an AI-powered journaling and mood-tracking app designed to help you express yourself freely and gain emotional insights through smart analysis. Whether you're logging a daily entry or venting your thoughts, VibeNote helps you keep track of your emotional health with simplicity and intelligence.
