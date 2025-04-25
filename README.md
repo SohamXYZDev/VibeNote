@@ -7,11 +7,12 @@
 git clone https://github.com/SohamXYZDev/VibeNote
 ```
 2) Create an .env file in the /server/ directory
-3) Put your Gemini API key in .env file as
+3) Put your Gemini API key in .env file as GOOGLE_GENERATIVE_AI_KEY
 4) Run the node server
 ```bash
 node server.js
 ```
+---
 
 **Your mood, your words — captured, analyzed, and understood.**
 
